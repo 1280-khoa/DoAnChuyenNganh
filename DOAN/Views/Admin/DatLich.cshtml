@@ -1,0 +1,115 @@
+﻿
+
+@model PagedList.PagedList<DOAN.Models.DatLich>
+@using DOAN.Models;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "DatLich";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">DANH SÁCH LỊCH HẸN</strong>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Tên Khách Hàng
+                    </th>
+
+                    <th>
+                        Số Điện Thoại
+                    </th>
+                    <th>
+                        Địa Chỉ
+                    </th>
+                    <th>
+                        Lý do đặt hàng
+                    </th>
+                    <th>
+                        Buổi hẹn
+                    </th>
+                    <th>
+                        Ngày hẹn
+                    </th>
+                    <th>
+                        Địa điểm
+                    </th>
+                    <th>
+                        Ghi chú
+                    </th>
+                    <th>
+                        Trạng Thái Lịch Đặt
+                    </th>
+                    <th>Lý do hủy lịch hẹn</th>
+                    <th>Chức Năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNguoiDat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NguyenNhan1.NguyenNhanDatLich)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Buoi1.BuoiDatLich)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayHen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaDiem1.DiaDiemDatLich)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GhiChu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrangThaiDonHang.TrangThaiDH)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.LyDoHuy)</td>
+                        <td>
+                            <a href="@Url.Action("EditDatlich","Admin", new { @id = item.ID_DatLich })" class="btn btn-sm btn-success">Duyệt lịch hẹn</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("DatLich", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        text-align: center;
+        width: 50px;
+        border: solid;
+    }
+</style>
+=============================================

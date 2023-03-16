@@ -1,0 +1,64 @@
+﻿@model DOAN.Models.CT_DonHang
+
+@{
+    ViewBag.Title = "CTDonHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/order.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<header style="background-color:#fff;margin-top:70px;">
+    <a></a>
+</header>
+
+
+<div>
+    <div class="panel-heading">
+        <h1 style="text-align:center; margin-bottom: 20px;">Chi Tiết Đơn Đặt Hàng</h1>
+    </div>
+
+
+    <table class="table table-hover  ">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th> </th>
+            </tr>
+        </thead>
+
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Tên Sản Phẩm :</h3></td>
+            <td class="col-sm-8 col-md-6"><h4> @Html.DisplayFor(model => model.SanPham.TenSanPham)</h4></td>
+
+        </tr>
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Image :</h3></td>
+            <td class="col-sm-8 col-md-6"><img src="@Url.Content("~/asset/new/"+Model.SanPham.Image)" width="120px" /></td>
+
+        </tr>
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Số Lượng :</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>@Html.DisplayFor(model => model.SoLuong)</h4></td>
+
+        </tr>
+
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Đơn Giá :</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>@Html.DisplayFor(model => model.DonGia)</h4></td>
+
+        </tr>
+
+
+    </table>
+
+
+
+
+
+</div>

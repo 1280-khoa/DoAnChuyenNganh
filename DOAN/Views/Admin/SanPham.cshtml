@@ -1,0 +1,130 @@
+﻿@model PagedList.PagedList<DOAN.Models.SanPham>
+@using DOAN.Models;
+@using PagedList.Mvc;
+@helper  Truncate(string input, int lenght)
+{
+    if (input.Length < lenght)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, lenght)<text> ....</text>
+    }
+}
+
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">DANH SÁCH SẢN PHẨM</strong>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 5px 0px"></div>
+    <div class="col-md-12" style="text-align: right">
+        <a href="@Url.Action("CreateNew", "Admin")" class="btn btn-sm btn-success">
+            <i class="fa"></i>Thêm sản phẩm mới
+        </a>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá sản phẩm</th>
+                    <th style="width:90px;" class="text-center">Hình ảnh</th>
+                    <th>Chi tiết sản phẩm</th>
+                    <th>Số lượng tồn</th>
+                    <th>Loại sản phẩm</th>
+                    <th>Thương hiệu</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenSanPham)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gia_SanPham)
+                        </td>
+                        <td>
+                            <img src="@Url.Content("~/asset/new/" + item.Image)" style="width:75px; height:75px" />
+                        </td>
+                        <td>
+                            @Truncate(item.ChiTietSanPham, 103)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoaiSP.TenLoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThuongHieu.TenThuongHieu)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit","Admin", new { @id = item.ID_SanPham })" class="btn btn-sm btn-success">EDIT</a>
+                            <a href="@Url.Action("Delete","Admin", new { @id = item.ID_SanPham })" onclick="buyNow" class="btn btn-sm btn-danger" >DELETE</a>
+                            @*<a href="#" onclick="deleteNow() ; return false ;  " class="btn btn-sm btn-danger">DELETE</a>*@
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        text-align: center;
+        width: 50px;
+        border: solid;
+    }
+</style>
+
+
+@*<script type="text/javascript">
+    function deleteNow() {
+        question = confirm("Bạn Muốn Xóa Sản Phẩm Này?");
+        if (question != false) {
+            alert('Sản Phẩm Này Đã Bị Xóa!')
+        }
+    }
+</script>*@
+
+@*<script type="text/javascript">
+    function deleteNow() {
+        if (frmTest.Text.value == '') {
+            confirm("Hay nhap thong tin");
+            frmTest.Text.focus();
+            return false;
+        }
+        else {
+            r = confirm("Ban co muon xoa khong?");
+            if (r == false) return false;
+            else return true;
+        }
+    }
+</script>
+
+<form name="frmTest" method="post" action="" onsubmit="if(deleteNow() == false) return false">
+    <input type="text" name="Text" value="" />
+    <input type="submit" name="Xoa" value="Xoa" />
+</form*@

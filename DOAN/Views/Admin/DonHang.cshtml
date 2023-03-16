@@ -1,0 +1,160 @@
+﻿
+@model PagedList.PagedList<DOAN.Models.DonHang>
+@using DOAN.Models;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .detailsDH:hover {
+        background-color: greenyellow;
+    }
+</style>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">DANH SÁCH CÁC ĐƠN HÀNG CỦA KHÁCH HÀNG</strong>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-6 text-end">
+        <a href="@Url.Action("CreateNew", "Admin")" class="btn btn-sm btn-success">
+            Thêm sản phẩm mới
+        </a>
+    </div>*@
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Khách Hàng
+                    </th>
+                    <th>
+                        Tên người nhận                     
+                    </th>
+                    <th>
+                        Địa chỉ người nhận
+                    </th>
+                    <th>
+                        Số Điện Thoại Người Nhận
+                    </th>
+                    <th>
+                        Phương Thức Thanh Toán
+                    </th>
+                    <th>
+                        Ghi chú
+                    </th>
+                    <th>
+                        Ngày Đặt
+                    </th>
+                    <th>
+                        Trạng Thái Thanh Toán
+                    </th>
+                    <th>
+                        Trạng Thái Đơn Hàng
+                    </th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_KH)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChiNguoiNhan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDT_NguoiNhan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.PhuongThuc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GhiChu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThanhToan.TrangThaiThanhToan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThaiDonHang.TrangThaiDH)
+                    </td>
+                    <td>
+                        <button class="StatusOrder btn p-0" data-status="@item.TrangThai" data-id="@item.ID_DonHang" data-toggle="modal"
+                                data-target="#modal-secondary">
+                            @if (item.TrangThai == 1)
+                            {
+                                <button id="buttonwaiting" type="button" onclick="location.href='@Url.Action("TrangThaiDangGiao", "Admin", new { id = item.ID_DonHang })'" class="btn btn-secondary btn-sm px-3 btnloader">
+                                    <span class="indicator-label">
+                                        Đang giao
+                                    </span>
+                                    <span class="indicator-progress">
+                                        ... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                                <button type="button" onclick="location.href='@Url.Action("TrangThaiHoanThanh", "Admin", new { id = item.ID_DonHang })'" class="btn btn-secondary btn-sm px-3 btnloader">
+                                    <span class="indicator-label">
+                                        Hoàn thành
+                                    </span>
+                                    <span class="indicator-progress">
+                                        ... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            }
+                            else if (item.TrangThai == 3)
+                            {
+                               
+                                <button type="button" class="btn btn-info btn-sm px-3">
+                                    Đang giao
+                                </button>
+                                <button type="button" id="buttonwaiting" onclick="location.href='@Url.Action("TrangThaiHoanThanh", "Admin", new { id = item.ID_DonHang })'" class="btn btn-secondary btnloader btn-sm px-3">
+                                    <span class="indicator-label">
+                                        Hoàn thành
+                                    </span>
+                                    <span class="indicator-progress">
+                                        ... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-success btn-sm px-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Hoàn thành">Hoàn thành</button>
+                            }
+                        </button>
+                    </td>
+                    
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("DonHang", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        text-align: center;
+        width: 50px;
+        border: solid;
+    }
+</style>
+

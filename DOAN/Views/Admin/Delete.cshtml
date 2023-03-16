@@ -1,0 +1,100 @@
+﻿@model DOAN.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="card">
+    @*<div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">XÁC NHẬN XÓA SẢN PHẨM</strong>
+            </div>
+        </div>
+    </div>*@
+    <div class="alert alert-warning" style="background-color: beige">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="text-align:left;color:darkred;padding-top:5px">Bạn có chắc chắn muốn xóa sản phẩm này không?</div>
+            </div>
+            <div class="col-md-6" style="text-align:right">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div>
+                        <input type="submit" value="DELETE" class="btn btn-sm btn-success" />
+                        <a href="@Url.Action("SanPham","Admin")" class="btn btn-sm btn-dark">BACK TO PRODUCT</a>
+                    </div>
+                }
+             </div>
+        </div>             
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="dl-horizontal" style="font-size:medium">
+                    <dt>
+                        Mã sản phẩm: @Html.DisplayFor(model => model.ID_SanPham)
+
+                    </dt>
+                    <dd>
+
+                    </dd>
+                    <dt>
+                        Tên sản phẩm: @Html.DisplayFor(model => model.TenSanPham)
+                    </dt>
+
+                    <dd>
+
+                    </dd>
+
+                    <dt>
+                        Giá sản phẩm: @Html.DisplayFor(model => model.Gia_SanPham)
+                    </dt>
+
+                    <dd>
+                       
+                    </dd>
+                    <dt>
+                        Chi tiết sản phẩm:
+                    </dt>
+
+                    <dd>
+                        @Html.TextAreaFor(model => model.ChiTietSanPham, new { @class = "form-control" })
+                    </dd>
+
+
+                    <dt>
+                        Loại sản phẩm: @Html.DisplayFor(model => model.LoaiSP.TenLoai)
+                    </dt>
+
+                    <dd>
+                        
+                    </dd>
+
+                    <dt>
+                        Thương hiệu: @Html.DisplayFor(model => model.ThuongHieu.TenThuongHieu)
+                    </dt>
+
+                    <dd>
+                       
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal" style="font-size:medium">
+                    <dt>
+                        Hình ảnh
+                    </dt>
+                    <dd>
+                        <img src="@Url.Content("~/asset/new/"+ Model.Image)" width="350" />
+                        @ViewBag.ThongBao
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+

@@ -1,0 +1,87 @@
+﻿@model PagedList.PagedList<DOAN.Models.KhachHang>
+@using DOAN.Models;
+@using PagedList.Mvc;
+@helper  Truncate(string input, int lenght)
+{
+    if (input.Length < lenght)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, lenght)<text> ....</text>
+    }
+}
+@{
+    ViewBag.Title = "KhachHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">DANH SÁCH KHÁCH HÀNG</strong>
+            </div>
+        </div>
+    </div>
+    <p> </p>
+    @*<div class="col-md-6 text-end">
+            <a href="@Url.Action("CreateNew", "Admin")" class="btn btn-sm btn-success">
+                Thêm sản phẩm mới
+            </a>
+        </div>*@
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    @*<th style="width:20px;" class="text-center">#</th>*@
+                    <th>Họ Tên</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Địa Chỉ</th>
+                    <th>Account</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoTen_KH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT_KH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi_KH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Account_KH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Password_KH)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("KhachHang", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        text-align: center;
+        width: 50px;
+        border:solid;
+    }
+</style>
+
+
+

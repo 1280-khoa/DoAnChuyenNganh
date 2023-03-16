@@ -1,0 +1,93 @@
+﻿* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #fff;
+    min-height: 70px;
+    padding: 15px;
+}
+
+main {
+    background-color: #dddddd;
+    min-height: 100%;
+    padding: 7.5px 15px;
+}
+
+footer {
+    background-color: #000000;
+    min-height: 70px;
+    padding: 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 15px;
+    border: 2px dotted #cccccc;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #009999;
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.input-box {
+    margin-bottom: 10px;
+}
+
+    .input-box input {
+        padding: 7.5px 15px;
+        width: 100%;
+        border: 1px solid #cccccc;
+        outline: none;
+    }
+
+.btn-box {
+    text-align: right;
+    margin-top: 30px;
+}
+
+    .btn-box button {
+        padding: 7.5px 15px;
+        border-radius: 2px;
+        background-color: #009999;
+        color: #ffffff;
+        border: none;
+        outline: none;
+    }
+
+    .btn-box .out {
+        background-color: rgb(212, 60, 60) !important;
+        text-decoration: none;
+    }
+
+.new-account2 {
+    font-size: 14px;
+    text-decoration: none;
+    display: grid;
+}
+
+.text-out {
+    text-decoration: none;
+    color: #fff;
+}
+
+.account:hover {
+    color: red;
+}

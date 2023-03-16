@@ -1,0 +1,29 @@
+﻿
+
+@model IEnumerable<DOAN.Models.BinhLuan>
+@{
+    ViewBag.Title = "BinhLuanSP";
+    Layout = null;
+}
+
+@foreach (var sanpham in Model)
+{
+    <div class="row">
+        <div style=" margin-right: 0px;display:flex;" class="comment-author-infos pt-25">
+            <h5 style="margin-top: 5px; width:121px"> <i class="fas fa-user fa-lg me-3 fa-fw"></i> @sanpham.TenKH </h5> <p style=" margin-right: 214px; margin-top: 6px;">-@sanpham.NgayCmt</p>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        
+        <div class="alert alert-light" style="background-color: whitesmoke;  color: black">
+           
+            <h6 style="width:460px">@Html.DisplayFor(model => sanpham.NoiDung)</h6>
+        </div>
+    </div>
+    
+
+
+}
+

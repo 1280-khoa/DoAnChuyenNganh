@@ -1,0 +1,75 @@
+﻿@model DOAN.Models.SanPham
+
+@{
+    ViewBag.Title = "CreateNew";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    #createnew:hover {
+        background-color: lawngreen;
+    }
+</style>
+@using (Html.BeginForm("CreateNew", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <strong class="text-uppercase text-danger">THÊM SẢN PHẨM MỚI</strong>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <p style="font-weight: bold">Tên sản phẩm</p>
+                        @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <p style="font-weight: bold">Chi tiết sản phẩm</p>
+                        @Html.TextAreaFor(model => model.ChiTietSanPham, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ChiTietSanPham, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <p style="font-weight: bold">Số lượng sản phẩm</p>
+                        @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                    </div>                                    
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <p style="font-weight: bold">Giá sản phẩm</p>
+                        @Html.EditorFor(model => model.Gia_SanPham, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Gia_SanPham, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <p style="font-weight: bold; padding:25px 0px">Sản phẩm thuộc loại:  @Html.DropDownList("ID_Loai")</p>
+                    </div>
+                    <div class="form-group">
+                        <p style="font-weight: bold; padding: 25px 0px">Sản phẩm thuộc thương hiệu: @Html.DropDownList("ID_ThuongHieu")</p>
+
+                    </div>
+                    <div class="form-group">
+                        <p style="font-weight: bold">Hình ảnh sản phẩm</p>
+                        <input type="file" name="fileupload" />
+                        @ViewBag.Thongbao
+                    </div>
+                </div>
+            </div>
+                
+            <div class="form-group">
+                 <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value=" CREATE " class="btn btn-sm btn-success" /> <a href="@Url.Action("SanPham","Admin")" class="btn btn-sm btn-dark">BACK TO PRODUCT</a>
+                 </div>
+            </div>
+        </div>
+  </div>
+}
+
+
+

@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<DOAN.Models.SanPham>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <link href="/css/Style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/fontawesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+    <link href="~/asset/font/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/CSS/footer.css" rel="stylesheet" />
+    <style>
+        .MenuTrang li {
+            display: inline;
+            color: #000;
+        }
+
+        .thumbnail {
+            text-decoration: none;
+            height: 450px;
+        }
+    </style>
+    @Html.Partial("Header")
+</head>
+
+
+<body>
+    <div class="small-container">
+        <h2 id="titlle" class="title">LapTop</h2>
+        <div class="row">
+            @foreach (var SP in Model)
+            {
+                if (SP.ID_Loai == 2)
+                {
+                    <div class="col-4">
+                        <div class="thumbnail">
+                            <a href="@Url.Action("Details","Store",new {id=SP.ID_SanPham})">
+                                <img src="~/asset/new/@SP.Image" width="300" alt="@SP.TenSanPham" />
+                                <div>
+                                    <br />
+                                    <h4 style="text-align:center">@SP.TenSanPham</h4>
+                                    <p></p>
+                                </div>
+                                <div class="rating">
+                                    <p style="text-align:center">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </p>
+
+                                </div>
+                        </div>
+                    </div>
+                }
+
+            }
+            @*<p style="color:#000">
+                    Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+                </p>
+                <div class="MenuTrang">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+
+                </div>*@
+
+
+        </div>
+
+    </div>
+
+    <!--quangcaospmoi-->
+    <div class="offer">
+        <div class="samll-container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="~/asset/shop/newskate.jpg" class="offer-img" width="650" "                />
+                </div>
+                <div class="col-2">
+                    <p>Only Available In This Store</p>
+                    <h1>Titan HonDar FullDeck</h1>
+                    <sammll>
+                        Chất liệu bánh xe: Màu đục được làm bằng nhựa PU cao cấp,chống bào mòn cao.
+                        Mặt ván được cấu tạo từ 7 lớp gỗ Coolstep Tiêu chuẩn, mặt ván nhiều hình cá tính.
+                        Trục bánh xe được cấu tạo từ hợp kim nhôm,chịu lực cao.Khả năng chịu lực lên tới 100kg.
+                        Phù hợp cho người lớn và trẻ nhỏ trên 10 tuổi.Đạt chuẩn thi đấu.
+                        Chiếc ván trượt gỗ phong mặt ván được phủ 1 lớp mặt nhám làm tăng khả năng ma sát của bàn chân hoặc đế giày khi trượt. Ngoài ra mặt nhám này có tác dụng chống thấm nước cực kỳ tốt.
+                    </sammll>
+                    <div class="button" style="margin-top:15px">
+                        <a style="background-color:red; border-radius:30px;padding:10px; " href="#" onclick="buyNow(); return false;" class="btn">Buy Now &#10132; </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--end-->
+    <!--nhận xét khách hàng-->
+    <!--end-->
+    <!--logo thương hiệu-->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="./image/logo-godrej.png" />
+                </div>
+                <div class="col-5">
+                    <img src="./image/logo-coca-cola.png" />
+                </div>
+                <div class="col-5">
+                    <img src="./image/logo-oppo.png" />
+                </div>
+                <div class="col-5">
+                    <img src="./image/logo-paypal.png" />
+                </div>
+                <div class="col-5">
+                    <img src="./image/logo-philips.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <div style="height:100%">
+        <footer class="footer-distributed">
+
+            @Html.Partial("footer")
+
+        </footer>
+
+
+    </div>
+
+</body>
+
+
+</html>
+<script type="text/javascript">
+    function buyNow() {
+        question = confirm("Bạn Muốn Mua Sản Phẩm Này?");
+        if (question != false) {
+            alert('Cảm Ơn Đã Chọn Mua Sản Phẩm')
+        }
+    }
+</script>

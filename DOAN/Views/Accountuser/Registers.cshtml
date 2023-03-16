@@ -1,0 +1,173 @@
+﻿@model DOAN.BundleConfig
+
+@{
+    ViewBag.Title = "Registers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hoten {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        width: 100%;
+        resize: vertical;
+        padding: 15px;
+        border-radius: 15px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .Create_context {
+        float: left;
+        width: 100%;
+        border-radius: 15px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+        padding: 15px;
+        background-color: lightgrey;
+    }
+
+        .Create_context:hover {
+            cursor: pointer;
+            opacity: 0.9;
+            background-color: lightgreen;
+            color: #000;
+        }
+
+    .create_form {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        padding: 15px;
+        /*border: 2px dotted #cccccc;*/
+        border-radius: 10px;
+    }
+</style>
+
+
+@using (Html.BeginForm()) 
+{
+    
+    
+<div class="form-horizontal">
+   
+    @Html.ValidationSummary(true)
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Login in to website</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" sizes="180x180" href="~/asset/favicon/android-chrome-192x192.png">
+        <link href="~/Content/login.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/Views/Home/Index.cshtml">
+    </head>
+    <body style="background-image: url('https://static.vecteezy.com/system/resources/previews/002/884/043/original/abstract-red-and-black-futuristic-gaming-background-in-livestream-free-vector.jpg'); ">
+
+        <section class="vh-100" style="background-color: #eee;">
+
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                    <div style="padding-left:150px;" class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                        <p style="padding-right:150px;"class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng Ký </p>
+                                        <form class="mx-1 mx-md-4" style="padding-left:350px;">
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example1c">Họ và Tên</label>
+                                                <div class="form-outline flex-fill mb-0">
+
+                                                    @Html.TextBox("HoTen_KH", null, new { @class = "hoten" })
+                                                    @ViewData["Lỗi1"]
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example3c">Email Của Bạn</label>
+                                                <div class="form-outline flex-fill mb-0">
+
+                                                    @Html.TextBox("Account_KH", null, new { @class = "hoten" })
+                                                    @ViewData["Lỗi2"]
+                                                    @ViewBag.Warning
+
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example4c">Mật Khẩu</label>
+                                                <div class="form-outline flex-fill mb-0">
+
+                                                    @Html.Password("Password_KH", null, new { @class = "hoten" })
+                                                    @ViewData["Lỗi3"]
+
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example4cd">Nhập Lại Mật Khẩu</label>
+                                                <div class="form-outline flex-fill mb-0">
+
+
+                                                    @Html.Password("Matkhaunhaplai", null, new { @class = "hoten" })
+                                                    @ViewData["Lỗi6"]
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example1c">Số Điện Thoại Của Bạn</label>
+                                                <div class="form-outline flex-fill mb-0">
+
+                                                    @Html.TextBox("SDT_KH", null, new { @class = "hoten" })
+                                                    @ViewData["Lỗi5"]
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example1c">Địa Chỉ Của Bạn</label>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    @Html.TextBox("DiaChi_KH", null, new { @class = "hoten" })
+                                                    @ViewData["Lỗi4"]
+                                                </div>
+                                            </div>
+                                            <div class="form-check d-flex justify-content-center mb-5"> 
+                                                <a href="/Accountuser/Signin">Tôi Đã Có Tài Khoản</a>
+                                            </div>
+
+
+                                            <div style="padding-right:200px;" class="form-group">
+                                                <div  class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" class="Create_context" value="Tạo Tài Khoản" /> 
+                                                    
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">                                      
+                                        <img style="padding-top: 100px;  height: 700px;width:500px" src="~/asset/new/logo.png"
+                                             class="img-fluid" alt="Sample image">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+
+</div>
+}
+
+

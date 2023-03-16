@@ -1,0 +1,26 @@
+﻿body {
+   
+}
+
+.tthang-hoa {
+    float: left;
+    width: 900px;
+}
+
+.order {
+    float: right;
+    width: 600px;
+    
+}
+.table1 {
+    background-color: #B1E3DA;
+}
+.table2 {
+    background-color: #B1E3DA;
+}
+.oder:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    background-color: lightgreen;
+    color: #000;
+}
